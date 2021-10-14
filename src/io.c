@@ -37,6 +37,27 @@ void efface_grille (grille g){
 	printf("\n\e[%dA",g.nbl*2 + 5); 
 }
 
+void efface_todo(int n, int p){
+	printf("\n\033[%dA",n*2+5+p); 
+	printf("\033[0J"); // efface de la position du curseur à la fin.
+}
+
+int scan(char tab[],int size){
+	char c;
+	int nb_lgn=0,indice=0;
+
+	while ((c = getchar()) == '\n' || c == ' ') // On se place à la première lettre du nom du fichier
+		if (c=='\n') nb_lgn++; // On incrémente le nombre de lignes sautées lorsqu'il y en a.
+
+	while ((c!='\n' && c!=' ') && indice<size-1){ // On note le caractère dans la chaîne
+		tab[indice++]=c;
+		c=getchar();
+	}
+	tab[indice]='\0';
+
+	return nb_lgn; // On retourne le nombre de lignes sautées.
+}
+
 void debut_jeu(grille *g, grille *gc){
 	char c = getchar(); 
 	while (c != 'q') // touche 'q' pour quitter
@@ -51,15 +72,17 @@ void debut_jeu(grille *g, grille *gc){
 			}
 			case 'n':
 			{ // touche n pour une nouvelle catégorie
-				char file[30];
-				char chemin[50];
-				scanf("%s",file);
-				sprintf(chemin,"grilles/%s",file);
-				printf("\033c"); // EFFACE LE TERMINAL // ! CHERCHER MIEUX
+				char file[30],chemin[50];
+				int i = scan(file,30);
+				sprintf(chemin,"grilles/%s",file); // On rajoute le nom du répertoire.
+				efface_todo(g->nbl,i); // On efface la grille précédente.
+				
 				libere_grille(g);
 				libere_grille(gc);
+
 				init_grille_from_file(chemin,g);
 				alloue_grille (g->nbl, g->nbc, gc);
+
 				affiche_grille(*g);
 				break;
 			}

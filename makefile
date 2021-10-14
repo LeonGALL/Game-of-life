@@ -7,7 +7,7 @@ BPATH = bin/
 
 VERSION=1.0
 
-ARCHIVE = $(SPATH) $(HPATH) makefile #Doxyfile
+ARCHIVE = $(SPATH) $(HPATH) makefile Doxyfile
 ARCHIVENAME = leon-gall-v-$(VERSION)
 
 EXEC = main
@@ -20,19 +20,13 @@ SOURCES = $(wildcard $(SPATH)*.c)
 OBJETS = $(patsubst %.c,$(OPATH)%.o,$(notdir $(SOURCES)))
 
 	
-$(EXEC) : $(OBJETS) | bin
+$(EXEC) : $(OBJETS)
+	@mkdir -p $(BPATH)
 	$(CC) -o $(BPATH)$(EXEC) $^
 
-$(OPATH)%.o : %.c | obj
+$(OPATH)%.o : %.c
+	@mkdir -p $(OPATH)
 	$(CC) -o $@ -c $< -I $(HPATH)
-
-
-obj :
-	@mkdir $(OPATH)
-
-bin :
-	@mkdir $(BPATH)
-
 
 dist :
 	tar -Jcv $(ARCHIVE) -f $(ARCHIVENAME).tar.xz
