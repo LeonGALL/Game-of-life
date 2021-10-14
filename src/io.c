@@ -37,8 +37,8 @@ void efface_grille (grille g){
 	printf("\n\e[%dA",g.nbl*2 + 5); 
 }
 
-void efface_todo(int n, int p){
-	printf("\n\033[%dA",n*2+5+p); 
+void efface(int n, int p){
+	printf("\n\033[%dA",n*2+5+p); // déplace le curseur
 	printf("\033[0J"); // efface de la position du curseur à la fin.
 }
 
@@ -75,7 +75,7 @@ void debut_jeu(grille *g, grille *gc){
 				char file[30],chemin[50];
 				int i = scan(file,30);
 				sprintf(chemin,"grilles/%s",file); // On rajoute le nom du répertoire.
-				efface_todo(g->nbl,i); // On efface la grille précédente.
+				efface(g->nbl,i); // On efface la grille précédente.
 				
 				libere_grille(g);
 				libere_grille(gc);

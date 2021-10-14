@@ -23,6 +23,13 @@ void affiche_grille (grille g);
 // effacement d'une grille
 void efface_grille (grille g);
 
+// effacement d'une grille pour permettre l'affichage d'une différente
+void efface(int n, int p);
+
+// remplissage d'un tableau avec une chaine de caractère en entrée clavier
+// retourne le nombre de sauts de lignes effectués.
+int scan(char tab[],int size);
+
 // debute le jeu
 void debut_jeu(grille *g, grille *gc);
 

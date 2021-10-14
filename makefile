@@ -1,5 +1,5 @@
-CC = gcc -g
-
+CC = gcc
+CFLAGS = -g
 OPATH = obj/
 SPATH = src/
 HPATH = include/
@@ -22,11 +22,11 @@ OBJETS = $(patsubst %.c,$(OPATH)%.o,$(notdir $(SOURCES)))
 	
 $(EXEC) : $(OBJETS)
 	@mkdir -p $(BPATH)
-	$(CC) -o $(BPATH)$(EXEC) $^
+	$(CC) $(CFLAGS) -o $(BPATH)$(EXEC) $^
 
 $(OPATH)%.o : %.c
 	@mkdir -p $(OPATH)
-	$(CC) -o $@ -c $< -I $(HPATH)
+	$(CC) $(CFLAGS) -o $@ -c $< -I $(HPATH)
 
 dist :
 	tar -Jcv $(ARCHIVE) -f $(ARCHIVENAME).tar.xz
