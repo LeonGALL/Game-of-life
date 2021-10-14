@@ -1,3 +1,9 @@
+/** 
+ * \file io.c 
+ * Fichier s'occupant des entrées/sorties du programme.
+ * \author Léon GALL
+ */
+
 #include "io.h"
 
 void affiche_trait (int c){
@@ -40,6 +46,20 @@ void debut_jeu(grille *g, grille *gc){
 			{ // touche "entree" pour évoluer
 				evolue(g,gc);
 				efface_grille(*g);
+				affiche_grille(*g);
+				break;
+			}
+			case 'n':
+			{ // touche n pour une nouvelle catégorie
+				char file[30];
+				char chemin[50];
+				scanf("%s",file);
+				sprintf(chemin,"grilles/%s",file);
+				printf("\033c"); // EFFACE LE TERMINAL // ! CHERCHER MIEUX
+				libere_grille(g);
+				libere_grille(gc);
+				init_grille_from_file(chemin,g);
+				alloue_grille (g->nbl, g->nbc, gc);
 				affiche_grille(*g);
 				break;
 			}

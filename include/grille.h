@@ -1,3 +1,9 @@
+/** 
+ * \file grille.h
+ * Fichier contenant les prototypes des fonctions de jrille.c.
+ * \author Léon GALL
+ */
+
 #ifndef __GRILLE_H
 #define __GRILLE_H
 

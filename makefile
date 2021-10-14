@@ -7,7 +7,7 @@ BPATH = bin/
 
 VERSION=1.0
 
-ARCHIVE = src/ makefile Doxyfile
+ARCHIVE = $(SPATH) $(HPATH) makefile #Doxyfile
 ARCHIVENAME = leon-gall-v-$(VERSION)
 
 EXEC = main
@@ -35,7 +35,7 @@ bin :
 
 
 dist :
-	tar -c $(ARCHIVE) | xz > $(ARCHIVENAME).tar.xz
+	tar -Jcv $(ARCHIVE) -f $(ARCHIVENAME).tar.xz
 
 docs :
 	doxygen

@@ -1,3 +1,9 @@
+/** 
+ * \file io.h
+ * Fichier contenant les prototypes des fonctions de io.c.
+ * \author Léon GALL
+ */
+
 #ifndef __IO_H
 #define __IO_H
 

@@ -1,3 +1,9 @@
+/** 
+ * \file jeu.h
+ * Fichier contenant les prototypes des fonctions de jeu.c.
+ * \author Léon GALL
+ */
+
 #ifndef __JEU_H
 #define __JEU_H
 

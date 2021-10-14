@@ -1,3 +1,9 @@
+/** 
+ * \file main.c 
+ * Fichier principal.
+ * \author Léon GALL
+ */
+
 #include <stdio.h>
 
 #include "grille.h"
@@ -8,7 +14,7 @@ int main (int argc, char ** argv) {
 	
 	if (argc != 2 )
 	{
-		printf("usage : main <fichier grille>");
+		printf("usage : main <fichier grille>\n");
 		return 1;
 	}
 

@@ -1,3 +1,9 @@
+/** 
+ * \file io.c 
+ * Fichier contenant les fonctions régissant l'évolution du jeu.
+ * \author Léon GALL
+ */
+
 #include "jeu.h"
 
 int compte_voisins_vivants (int i, int j, grille g){
