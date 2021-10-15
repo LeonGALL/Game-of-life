@@ -9,8 +9,13 @@
 
 #include "grille.h"
 
-// modulo modifié pour traiter correctement les bords i=0 et j=0
-// dans le calcul des voisins avec bords cycliques
+
+/**
+ * \fn static inline int modulo(int i, int m);
+ * \param i ligne
+ * \param j colonne
+ * \brief Cette fonction est un modulo modifié pour traiter correctement les bords i=0 et j=0 dans le calcul des voisins avec bords cycliques.
+ */
 static inline int modulo(int i, int m) {return (i+m)%m;}
 
 // compte le nombre de voisins vivants de la cellule (i,j)

@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g
+CFLAGS = -g -Wall
 OPATH = obj/
 SPATH = src/
 HPATH = include/
@@ -32,7 +32,8 @@ dist :
 	tar -Jcv $(ARCHIVE) -f $(ARCHIVENAME).tar.xz
 
 docs :
-	doxygen
+	@rm -rf documentation/
+	doxygen Doxyfile
 
 debug :
 	gdb ./$(BPATH)$(EXEC)
