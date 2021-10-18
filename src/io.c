@@ -40,7 +40,6 @@ void affiche_ligne (int c, int* ligne){
  */
 void affiche_grille (grille g){
 	int i, l=g.nbl, c=g.nbc;
-	printf("\n");
 	affiche_trait(c);
 	for (i=0; i<l; ++i) {
 		affiche_ligne(c, g.cellules[i]);
@@ -48,6 +47,37 @@ void affiche_grille (grille g){
 	}	
 	printf("\n"); 
 	return;
+}
+
+/**
+ * \fn void affiche_temps (int temps);
+ * \param temps temps d'évolution
+ * \brief Cette fonction affiche le temps d'évolution.
+ */
+void affiche_temps (int temps){
+	printf("\n\tTemps : %d\n",temps);
+}
+
+/**
+ * \fn void affiche_tout (grille g, int temps);
+ * \relatesalso grille
+ * \param g une grille
+ * \param temps temps d'évolution
+ * \brief Cette fonction affiche un temps d'évolution et une grille.
+ */
+void affiche_tout (grille g, int temps){
+	affiche_temps(temps);
+	affiche_grille(g);
+}
+
+/**
+ * \fn void efface_temps_grille (grille g);
+ * \relatesalso grille
+ * \param g une grille
+ * \brief Cette fonction place le curseur au début de l'affichage du temps (au-dessus de la grille).
+ */
+void efface_temps_grille (grille g){
+	printf("\n\e[%dA",g.nbl*2 + 6);
 }
 
 /**
@@ -67,7 +97,7 @@ void efface_grille (grille g){
  * \brief Cette fonction efface une grille.
  */
 void efface(int l, int p){
-	printf("\n\033[%dA",l*2+5+p); // déplace le curseur
+	printf("\n\033[%dA",l*2+6+p); // déplace le curseur
 	printf("\033[0J"); // efface de la position du curseur à la fin.
 }
 
@@ -103,6 +133,8 @@ int scan(char tab[],int size){
  * \brief Cette fonction débute le jeu et gère les intéractions entre l'utilisateur et le jeu.
  */
 void debut_jeu(grille *g, grille *gc){
+	int temps = 0;
+	compte_voisins_vivants = compte_voisins_vivants_cyclique; // Par défaut le comptage du voisinage se fait de façon cyclique
 	char c = getchar(); 
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
@@ -110,12 +142,13 @@ void debut_jeu(grille *g, grille *gc){
 			case '\n' : 
 			{ // touche "entree" pour évoluer
 				evolue(g,gc);
-				efface_grille(*g);
-				affiche_grille(*g);
+				temps++;
+				efface_temps_grille(*g);
+				affiche_tout(*g,temps);
 				break;
 			}
 			case 'n':
-			{ // touche n pour une nouvelle catégorie
+			{ // touche "n" pour une nouvelle catégorie
 				char file[30],chemin[50];
 				int i = scan(file,30);
 				sprintf(chemin,"grilles/%s",file); // On rajoute le nom du répertoire.
@@ -126,8 +159,21 @@ void debut_jeu(grille *g, grille *gc){
 
 				init_grille_from_file(chemin,g);
 				alloue_grille (g->nbl, g->nbc, gc);
-
-				affiche_grille(*g);
+				temps = 0;
+				affiche_tout(*g,temps);
+				break;
+			}
+			case 'c':
+			{ // Touche "c" pour activer/désactiver le voisinage cyclique 
+				if (compte_voisins_vivants == compte_voisins_vivants_cyclique){
+					compte_voisins_vivants = compte_voisins_vivants_non_cyclique;
+				} else {
+					compte_voisins_vivants = compte_voisins_vivants_cyclique;
+				}
+				/* SUIVANT SI IL FAUT OU NON PASSER À L'ÉVOLUTION SUIVANTE DIRECTEMENT
+				while ((c=getchar()) != '\n'); // On neutralise le saut à la ligne pour ne pas passer à l'étape suivante
+				printf("\n\e[2A");
+				*/
 				break;
 			}
 			default : 

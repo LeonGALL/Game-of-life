@@ -1,5 +1,5 @@
 /** 
- * \file io.c 
+ * \file jeu.c 
  * Fichier contenant les fonctions régissant l'évolution du jeu.
  * \author Léon GALL
  */
@@ -7,14 +7,14 @@
 #include "jeu.h"
 
 /**
- * \fn int compte_voisins_vivants (int i, int j, grille g);
+ * \fn int compte_voisins_vivants_cyclique (int i, int j, grille g);
  * \param i numéro de la ligne
  * \param j numéro de la colonne
  * \param g grille
  * \return Retourne le nombre de voisins vivants.
  * \brief Cette fonction compte le nombre de voisins vivants de la cellule (i,j). Les bords sont cycliques.
  */
-int compte_voisins_vivants (int i, int j, grille g){
+int compte_voisins_vivants_cyclique (int i, int j, grille g){
 	int v = 0, l=g.nbl, c = g.nbc;
 	v+= est_vivante(modulo(i-1,l),modulo(j-1,c),g);
 	v+= est_vivante(modulo(i-1,l),modulo(j,c),g);
@@ -27,6 +27,35 @@ int compte_voisins_vivants (int i, int j, grille g){
 
 	return v; 
 }
+
+/**
+ * \fn int compte_voisins_vivants_non_cyclique (int i, int j, grille g);
+ * \param i numéro de la ligne
+ * \param j numéro de la colonne
+ * \param g grille
+ * \return Retourne le nombre de voisins vivants.
+ * \brief Cette fonction compte le nombre de voisins vivants de la cellule (i,j). Les bords ne sont pas cycliques.
+ */
+int compte_voisins_vivants_non_cyclique (int i, int j, grille g){
+	int v = 0, l=g.nbl, c = g.nbc;
+	if (i-1 >= 0){
+		if (j-1 >= 0) v+= est_vivante(i-1,j-1,g);
+		if (j >= 0 && j < c) v+= est_vivante(i-1,j,g);
+		if (j+1 < c) v+= est_vivante(i-1,j+1,g);
+	}
+	if (i >= 0 && i < l){
+		if (j-1 >= 0) v+= est_vivante(i,j-1,g);
+		if (j+1 < c) v+= est_vivante(i,j+1,g);
+	}
+	if (i+1 < l){
+		if (j-1 >= 0) v+= est_vivante(i+1,j-1,g);
+		if (j >= 0 && j < c) v+= est_vivante(i+1,j,g);
+		if (j+1 < c) v+= est_vivante(i+1,j+1,g);
+	}
+
+	return v; 
+}
+
 
 /**
  * \fn void evolue (grille *g, grille *gc);
