@@ -56,14 +56,13 @@ int compte_voisins_vivants_non_cyclique (int i, int j, grille g){
 	return v; 
 }
 
-
 /**
- * \fn void evolue (grille *g, grille *gc);
+ * \fn void evolue_sans_vieillir (grille *g, grille *gc);
  * \param g pointeur vers une grille
  * \param gc pointeur vers une grille
- * \brief Cette fonction fait évoluer la grille g d'un pas de temps.
+ * \brief Cette fonction fait évoluer la grille g d'un pas de temps, sans vieillissement.
  */
-void evolue (grille *g, grille *gc){
+void evolue_sans_vieillir (grille *g, grille *gc){
 	copie_grille (*g,*gc); // copie temporaire de la grille
 	int i,j,l=g->nbl, c = g->nbc,v;
 	for (i=0; i<l; i++)
@@ -74,6 +73,7 @@ void evolue (grille *g, grille *gc){
 			if (est_vivante(i,j,*g)) 
 			{ // evolution d'une cellule vivante
 				if ( v!=2 && v!= 3 ) set_morte(i,j,*g);
+				else set_vivante(i,j,*g); // On réinitialise son âge à 1 (au cas où elle avait déjà vieilli précédemment)
 			}
 			else 
 			{ // evolution d'une cellule morte
@@ -83,3 +83,50 @@ void evolue (grille *g, grille *gc){
 	}
 	return;
 }
+
+/**
+ * \fn void set_vieillissement();
+ * \brief Cette fonction active le vieillissement.
+ */
+void set_vieillissement(){
+	print_age = print_age_vieillissement; 
+	evolue = evolue_vieillissement; 
+}
+
+/**
+ * \fn void set_vieillissement();
+ * \brief Cette fonction désactive le vieillissement.
+ */
+void unset_vieillissement(){ 
+	print_age = print_age_sans_vieillissement; 
+	evolue = evolue_sans_vieillir; 
+}
+/**
+ * \fn void evolue_vieillissement (grille *g, grille *gc);
+ * \param g pointeur vers une grille
+ * \param gc pointeur vers une grille
+ * \brief Cette fonction fait évoluer la grille g d'un pas de temps, avec vieillissement.
+ */
+void evolue_vieillissement (grille *g, grille *gc){
+	copie_grille (*g,*gc); // copie temporaire de la grille
+	int i,j,l=g->nbl, c = g->nbc,v;
+	for (i=0; i<l; i++)
+	{
+		for (j=0; j<c; ++j)
+		{
+			v = compte_voisins_vivants (i, j, *gc);
+			if (est_vivante(i,j,*g)) 
+			{ // evolution d'une cellule vivante
+				vieillir(i,j,*g);
+				if ( (v!=2 && v!= 3) || age(i,j,*g)>8) set_morte(i,j,*g);
+			}
+			else 
+			{ // evolution d'une cellule morte
+				if ( v==3 ) set_vivante(i,j,*g);
+			}
+		}
+	}
+	return;
+}
+
+

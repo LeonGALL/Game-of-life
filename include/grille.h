@@ -54,7 +54,7 @@ static inline void set_morte(int i, int j, grille g){g.cellules[i][j] = 0;}
  * \param g une grille
  * \brief teste si la cellule (i,j) de la grille g est vivante.
  */
-static inline int est_vivante(int i, int j, grille g){return g.cellules[i][j] == 1;}
+static inline int est_vivante(int i, int j, grille g){return g.cellules[i][j] != 0;}
 
 // recopie gs dans gd (sans allocation)
 void copie_grille (grille gs, grille gd);

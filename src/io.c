@@ -27,7 +27,7 @@ void affiche_trait (int c){
 void affiche_ligne (int c, int* ligne){
 	int i;
 	for (i=0; i<c; ++i) 
-		if (ligne[i] == 0 ) printf ("|   "); else printf ("| O ");
+		if (ligne[i] == 0 ) printf ("|   "); else printf ("| %c ",print_age(ligne[i]));
 	printf("|\n");
 	return;
 }
@@ -47,6 +47,26 @@ void affiche_grille (grille g){
 	}	
 	printf("\n"); 
 	return;
+}
+
+/**
+ * \fn char print_age_vieillissement(int e);
+ * \param e une cellule
+ * \return Retourne le caractère à afficher. ('O')
+ * \brief Cette fonction retourne le caractère à afficher.
+ */
+char print_age_vieillissement(int e){
+	return 'O';
+}
+
+/**
+ * \fn char print_age_sans_vieillissement(int e);
+ * \param e une cellule
+ * \return Retourne le caractère à afficher. (age de la cellule)
+ * \brief Cette fonction retourne le caractère à afficher.
+ */
+char print_age_sans_vieillissement(int e){
+	return (char) e;
 }
 
 /**
@@ -135,6 +155,7 @@ int scan(char tab[],int size){
 void debut_jeu(grille *g, grille *gc){
 	int temps = 0;
 	compte_voisins_vivants = compte_voisins_vivants_cyclique; // Par défaut le comptage du voisinage se fait de façon cyclique
+	unset_vieillissement();
 	char c = getchar(); 
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
@@ -171,7 +192,7 @@ void debut_jeu(grille *g, grille *gc){
 					compte_voisins_vivants = compte_voisins_vivants_cyclique;
 				}
 				/* SUIVANT SI IL FAUT OU NON PASSER À L'ÉVOLUTION SUIVANTE DIRECTEMENT
-				while ((c=getchar()) != '\n'); // On neutralise le saut à la ligne pour ne pas passer à l'étape suivante
+				while ((c=getchar()) != '\n'); // On neutralise le saut à la ligne pour ne pas passer à l'evolution suivante
 				printf("\n\e[2A");
 				*/
 				break;

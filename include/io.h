@@ -20,6 +20,20 @@ void affiche_ligne (int c, int* ligne);
 // affichage d'une grille
 void affiche_grille (grille g);
 
+// retourne 'O'
+char print_age_vieillissement(int e);
+
+// retourne l'âge.
+char print_age_sans_vieillissement(int e);
+
+/**
+ * \fn char (*print_age) (int);
+ * \param \a int age d'une cellule.
+ * \return Retourne le caractère à afficher.
+ * \brief Pointeur de fonction. Pointera vers \b print_age_vieillissement ou vers \b print_age_sans_vieillissement .
+ */
+char (*print_age) (int);
+
 // affichage du temps
 void affiche_temps (int temps);
 
