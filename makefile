@@ -29,7 +29,7 @@ $(OPATH)%.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(HPATH)
 
 dist :
-	tar -Jcv $(ARCHIVE) -f $(ARCHIVENAME).tar.xz
+	tar -Jcvf $(ARCHIVENAME).tar.xz $(ARCHIVE)
 
 docs :
 	@rm -rf documentation/
