@@ -20,11 +20,21 @@ void affiche_ligne (int c, int* ligne);
 // affichage d'une grille
 void affiche_grille (grille g);
 
-// retourne 'O'
-char print_age_vieillissement(int e);
+/**
+ * \fn static inline char print_age_sans_vieillissement(int e);
+ * \param e une cellule
+ * \return Retourne le caractère à afficher. ('O')
+ * \brief Cette fonction retourne le caractère à afficher.
+ */
+static inline char print_age_sans_vieillissement(int e){ return 'O'; }
 
-// retourne l'âge.
-char print_age_sans_vieillissement(int e);
+/**
+ * \fn static inline char print_age_vieillissement(int e);
+ * \param e une cellule
+ * \return Retourne le caractère à afficher. (age de la cellule)
+ * \brief Cette fonction retourne le caractère à afficher.
+ */
+static inline char print_age_vieillissement(int e){ return (char) (e+'0'); }
 
 /**
  * \fn char (*print_age) (int);

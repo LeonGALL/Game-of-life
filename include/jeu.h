@@ -70,16 +70,10 @@ void evolue_vieillissement (grille *g, grille *gc);
  */
 void (*evolue) (grille*, grille*);
 
-
-//extern char (*print_age) (int);
-//extern char print_age_vieillissement(int e);
-//extern char print_age_sans_vieillissement(int e);
-
-
-//!!!
+// Active le vieillissement
 void set_vieillissement();
 
-//!!!
+// Désactive le vieillissement
 void unset_vieillissement();
 
 #endif

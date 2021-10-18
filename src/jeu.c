@@ -85,23 +85,6 @@ void evolue_sans_vieillir (grille *g, grille *gc){
 }
 
 /**
- * \fn void set_vieillissement();
- * \brief Cette fonction active le vieillissement.
- */
-void set_vieillissement(){
-	print_age = print_age_vieillissement; 
-	evolue = evolue_vieillissement; 
-}
-
-/**
- * \fn void set_vieillissement();
- * \brief Cette fonction désactive le vieillissement.
- */
-void unset_vieillissement(){ 
-	print_age = print_age_sans_vieillissement; 
-	evolue = evolue_sans_vieillir; 
-}
-/**
  * \fn void evolue_vieillissement (grille *g, grille *gc);
  * \param g pointeur vers une grille
  * \param gc pointeur vers une grille
@@ -129,4 +112,20 @@ void evolue_vieillissement (grille *g, grille *gc){
 	return;
 }
 
+/**
+ * \fn void set_vieillissement();
+ * \brief Cette fonction active le vieillissement.
+ */
+void set_vieillissement(){
+	print_age = print_age_vieillissement; 
+	evolue = evolue_vieillissement; 
+}
 
+/**
+ * \fn void set_vieillissement();
+ * \brief Cette fonction désactive le vieillissement.
+ */
+void unset_vieillissement(){ 
+	print_age = print_age_sans_vieillissement; 
+	evolue = evolue_sans_vieillir; 
+}

@@ -50,26 +50,6 @@ void affiche_grille (grille g){
 }
 
 /**
- * \fn char print_age_vieillissement(int e);
- * \param e une cellule
- * \return Retourne le caractère à afficher. ('O')
- * \brief Cette fonction retourne le caractère à afficher.
- */
-char print_age_vieillissement(int e){
-	return 'O';
-}
-
-/**
- * \fn char print_age_sans_vieillissement(int e);
- * \param e une cellule
- * \return Retourne le caractère à afficher. (age de la cellule)
- * \brief Cette fonction retourne le caractère à afficher.
- */
-char print_age_sans_vieillissement(int e){
-	return (char) e;
-}
-
-/**
  * \fn void affiche_temps (int temps);
  * \param temps temps d'évolution
  * \brief Cette fonction affiche le temps d'évolution.
@@ -155,7 +135,6 @@ int scan(char tab[],int size){
 void debut_jeu(grille *g, grille *gc){
 	int temps = 0;
 	compte_voisins_vivants = compte_voisins_vivants_cyclique; // Par défaut le comptage du voisinage se fait de façon cyclique
-	unset_vieillissement();
 	char c = getchar(); 
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
@@ -169,7 +148,7 @@ void debut_jeu(grille *g, grille *gc){
 				break;
 			}
 			case 'n':
-			{ // touche "n" pour une nouvelle catégorie
+			{ // touche "n" pour une nouvelle catégorie --> usage n grille3.txt ou n \n grille3.txt
 				char file[30],chemin[50];
 				int i = scan(file,30);
 				sprintf(chemin,"grilles/%s",file); // On rajoute le nom du répertoire.
@@ -196,6 +175,16 @@ void debut_jeu(grille *g, grille *gc){
 				printf("\n\e[2A");
 				*/
 				break;
+			}
+			case 'v':
+			{ // Touche "v" pour activer/désactiver le vieillissement
+				if (evolue == evolue_vieillissement) unset_vieillissement();
+				else set_vieillissement();
+				/* SUIVANT SI IL FAUT OU NON PASSER À L'ÉVOLUTION SUIVANTE DIRECTEMENT
+				while ((c=getchar()) != '\n'); // On neutralise le saut à la ligne pour ne pas passer à l'evolution suivante
+				printf("\n\e[2A");
+				*/
+			break;
 			}
 			default : 
 			{ // touche non traitée

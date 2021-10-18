@@ -5,10 +5,10 @@ SPATH = src/
 HPATH = include/
 BPATH = bin/
 
-VERSION=1.0
+VERSION=2.0
 
 ARCHIVE = $(SPATH) $(HPATH) makefile Doxyfile
-ARCHIVENAME = leon-gall-v-$(VERSION)
+ARCHIVENAME = GallLéon-GoL-$(VERSION)
 
 EXEC = main
 
