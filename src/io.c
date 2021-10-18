@@ -148,16 +148,15 @@ void debut_jeu(grille *g, grille *gc){
 				break;
 			}
 			case 'n':
-			{ // touche "n" pour une nouvelle catégorie --> usage n grille3.txt ou n \n grille3.txt
-				char file[30],chemin[50];
-				int i = scan(file,30);
-				sprintf(chemin,"grilles/%s",file); // On rajoute le nom du répertoire.
+			{ // touche "n" pour une nouvelle catégorie
+				char file[150];
+				int i = scan(file,150);
 				efface(g->nbl,i); // On efface la grille précédente.
 				
 				libere_grille(g);
 				libere_grille(gc);
 
-				init_grille_from_file(chemin,g);
+				init_grille_from_file(file,g);
 				alloue_grille (g->nbl, g->nbc, gc);
 				temps = 0;
 				affiche_tout(*g,temps);
