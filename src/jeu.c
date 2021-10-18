@@ -1,5 +1,5 @@
 /** 
- * \file io.c 
+ * \file jeu.c 
  * Fichier contenant les fonctions régissant l'évolution du jeu.
  * \author Léon GALL
  */
