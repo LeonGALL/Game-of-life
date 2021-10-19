@@ -39,7 +39,7 @@ void init_grille_from_file (char * filename, grille* g);
 static inline void set_vivante(int i, int j, grille g){g.cellules[i][j] = 1;}
 
 /**
- * \fn static inline void set_vivante(int i, int j, grille g);
+ * \fn static inline void set_morte(int i, int j, grille g);
  * \param i ligne
  * \param j colonne
  * \param g une grille
@@ -48,7 +48,7 @@ static inline void set_vivante(int i, int j, grille g){g.cellules[i][j] = 1;}
 static inline void set_morte(int i, int j, grille g){g.cellules[i][j] = 0;}
 
 /**
- * \fn static inline void set_vivante(int i, int j, grille g);
+ * \fn static inline void est_vivante(int i, int j, grille g);
  * \param i ligne
  * \param j colonne
  * \param g une grille

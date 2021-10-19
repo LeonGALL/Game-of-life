@@ -118,11 +118,11 @@ void evolue_vieillissement (grille *g, grille *gc){
  */
 void set_vieillissement(){
 	print_age = print_age_vieillissement; 
-	evolue = evolue_vieillissement; 
+	evolue = evolue_vieillissement;
 }
 
 /**
- * \fn void set_vieillissement();
+ * \fn void unset_vieillissement();
  * \brief Cette fonction désactive le vieillissement.
  */
 void unset_vieillissement(){ 

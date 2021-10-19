@@ -48,9 +48,9 @@ int compte_voisins_vivants_non_cyclique (int i, int j, grille g);
 
 /**
  * \fn int (*compte_voisins_vivants) (int, int, grille);
- * \param \a int numéro de la ligne
- * \param \a int numéro de la colonne
- * \param \a grille grille
+ * \param int numéro de la ligne
+ * \param int numéro de la colonne
+ * \param grille grille
  * \return Retourne le nombre de voisins vivants.
  * \brief Pointeur de fonction. Pointera vers \b compte_voisins_vivants_cyclique ou vers \b compte_voisins_vivants_non_cyclique .
  */
@@ -63,9 +63,8 @@ void evolue_sans_vieillir (grille *g, grille *gc);
 void evolue_vieillissement (grille *g, grille *gc);
 
 /**
- * \fn void (*evolue) (grille*, grille*);
- * \param \a grille un pointeur vers grille
- * \param \a grille un pointeur vers grille
+ * \param grille un pointeur vers grille
+ * \param grille un pointeur vers grille
  * \brief Pointeur de fonction. Pointera vers \b evolue_sans_vieillir ou vers \b evolue_vieillissement .
  */
 void (*evolue) (grille*, grille*);

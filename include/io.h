@@ -31,14 +31,14 @@ static inline char print_age_sans_vieillissement(int e){ return 'O'; }
 /**
  * \fn static inline char print_age_vieillissement(int e);
  * \param e une cellule
- * \return Retourne le caractère à afficher. (age de la cellule)
+ * \return Retourne le caractère à afficher. (Age de la cellule)
  * \brief Cette fonction retourne le caractère à afficher.
  */
 static inline char print_age_vieillissement(int e){ return (char) (e+'0'); }
 
 /**
  * \fn char (*print_age) (int);
- * \param \a int age d'une cellule.
+ * \param int age d'une cellule.
  * \return Retourne le caractère à afficher.
  * \brief Pointeur de fonction. Pointera vers \b print_age_vieillissement ou vers \b print_age_sans_vieillissement .
  */
