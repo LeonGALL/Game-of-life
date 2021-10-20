@@ -34,12 +34,13 @@ Le versionnement à l'aide de tags peut se lire de cette façon : \<NIVEAU\>.0.\
 
 - Le niveau se lit au début : 1 représentera le niveau 1, ...
 - La version de ce niveau se lit à la fin : la première version sera numérotée 0 (non noté), la seconde 1, ... _(et oui, les informaticiens commencent le compte à 0 :wink:)_
-  La dernière version d'un niveau est donc celle avec le numéro de \<VERSION\> le plus haut.
+
+La dernière version d'un niveau est donc celle avec le numéro de \<VERSION\> le plus haut.
 
 ## Contribution
 
 Ce projet est strictement personnel. Une contribution de votre part pourrait nous envoyer en conseil de discipline.
-Cependant, vous pouvez me faire part de votre avis et de vos conseils par [mail](mailto:leon.gall@etu.unistra.fr)
+Cependant, vous pouvez me faire part de votre avis et de vos conseils par [mail](mailto:leon.gall@etu.unistra.fr).
 
 ## Auteurs
 
