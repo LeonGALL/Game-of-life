@@ -4,9 +4,12 @@ Bienvenue dans le GitLab du projet de technique de développement du troisième 
 
 ## Description
 
-Le Jeu de la Vie (ou _Game of Life_) est, en réalité, un automate cellulaire défini en 1970 par le mathématicien anglais John Conway afin de tenter de résoudre un problème soulevé par un mathématicien, père de l’informatique, John Von Neumann. 
-Ce n’est pas à proprement parler un jeu : il ne nécessite pas l’intervention d’un joueur humain, hormis pour fixer les conditions initiales du jeu. Il se compose d’un univers dans lequel évoluent des cellules vivantes suivant des règles d’évolution précises. 
-Dans la version originale décrite par John Conway, l’univers est défini sur une grille à deux dimensions, de taille variable, où chaque case est une cellule pouvant prendre deux états différents : morte ou vivante. 
+Le Jeu de la Vie (ou _Game of Life_) est, en réalité, un automate cellulaire défini en 1970 par le mathématicien anglais John Conway afin de tenter de résoudre un problème soulevé par un mathématicien, père de l’informatique, John Von Neumann.
+
+Ce n’est pas à proprement parler un jeu : il ne nécessite pas l’intervention d’un joueur humain, hormis pour fixer les conditions initiales du jeu. Il se compose d’un univers dans lequel évoluent des cellules vivantes suivant des règles d’évolution précises.
+
+Dans la version originale décrite par John Conway, l’univers est défini sur une grille à deux dimensions, de taille variable, où chaque case est une cellule pouvant prendre deux états différents : morte ou vivante.
+
 Le passage d’un état à l’autre est guidé par les règles d’évolution suivantes :
 
 - Une cellule morte au temps _t_ devient vivante au temps _t + 1_ si et seulement si elle a exactement 3 cellules vivantes dans son voisinage.
