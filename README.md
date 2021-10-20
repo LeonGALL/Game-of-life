@@ -19,6 +19,7 @@ _Description issue du [document de présentation du projet](https://moodle.unist
 ## Niveaux
 
 La programmation de ce projet s'est décomposée en 5 niveaux :
+
 - [x] [Niveau 1](https://moodle.unistra.fr/pluginfile.php/557570/mod_resource/content/5/GoL_niveau1.pdf)
 - [x] [Niveau 2](https://moodle.unistra.fr/pluginfile.php/557571/mod_resource/content/7/GoL_niveau2.pdf)
 - [ ] [Niveau 3]() _À venir_
@@ -38,8 +39,8 @@ Le versionnement à l'aide de tags peut se lire de cette façon : \<NIVEAU\>.0.\
 ## Contribution
 
 Ce projet est strictement personnel. Une contribution de votre part pourrait nous envoyer en conseil de discipline.
-Cependant, vous pouvez me faire part de votre avis et de vos conseils par [mail](leon.gall@etu.unistra.fr)
+Cependant, vous pouvez me faire part de votre avis et de vos conseils par [mail](mailto:leon.gall@etu.unistra.fr)
 
 ## Auteurs
 
-Les codes de ce projet ont été écrits par [Léon GALL](leon.gall@etu.unistra.fr), ainsi que par l'équipe pédagogique de la licence informatique.
+Les codes de ce projet ont été écrits par [Léon GALL](@lgall), ainsi que par l'équipe pédagogique de la licence informatique.
