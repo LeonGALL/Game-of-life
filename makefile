@@ -8,7 +8,7 @@ BPATH = bin/
 
 VERSION=2_0_5
 
-ARCHIVE = $(SPATH) $(HPATH) makefile Doxyfile
+ARCHIVE = $(SPATH) $(HPATH) makefile Doxyfile README.md
 ARCHIVENAME = GallLéon-GoL-$(VERSION)
 
 EXEC = main
