@@ -1,6 +1,6 @@
 # Jeu de la Vie
 
-Bienvenue dans le GitLab du projet de technique de développement du troisième semestre de licence d'informatique.
+Bienvenue dans le projet de technique de développement du troisième semestre de licence d'informatique.
 
 ## Description
 
@@ -51,3 +51,29 @@ Cependant, vous pouvez me faire part de votre avis et de vos conseils par [mail]
 ## Auteurs
 
 Les codes de ce projet ont été écrits par [Léon GALL](@lgall), ainsi que par l'équipe pédagogique de la licence informatique.
+
+
+## Utilisation
+### Compilation et lancement du jeu
+
+Pour compiler ce jeu il suffit de se placer au sein du projet dans un terminal puis d'entrer la commande `make`.
+
+Après compilation, pour lancer le jeu, il faut entrer la commande suivante :
+```bash
+./bin/main <CHEMIN FICHIER GRILLE>
+```
+En général, ce sera :
+```bash
+./bin/main grilles/grille<NUMERO>.txt
+```
+
+### Contrôle des conditions de jeu
+
+- Touche <kbd>q</kbd> pour quitter le jeu.
+- Touche <kbd>n</kbd> pour entrer le nom d'une nouvelle grille.
+```
+n <CHEMIN FICHIER GRILLE>
+```
+- Touche <kbd>c</kbd> pour activer/désactiver le calcul de voisinage cyclique. Initialement, il est activé.
+- Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est activé.
+
