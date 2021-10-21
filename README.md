@@ -43,16 +43,6 @@ Le versionnement à l'aide de tags peut se lire de cette façon : \<NIVEAU\>.0.\
 
 La dernière version d'un niveau est donc celle avec le numéro de \<VERSION\> le plus haut.
 
-## Contribution
-
-Ce projet est strictement personnel. Une contribution de votre part pourrait nous envoyer en conseil de discipline.
-Cependant, vous pouvez me faire part de votre avis et de vos conseils par [mail](mailto:leon.gall@etu.unistra.fr).
-
-## Auteurs
-
-Les codes de ce projet ont été écrits par [Léon GALL](@lgall), ainsi que par l'équipe pédagogique de la licence informatique.
-
-
 ## Utilisation
 ### Compilation et lancement du jeu
 
@@ -77,3 +67,12 @@ n <CHEMIN FICHIER GRILLE>
 - Touche <kbd>c</kbd> pour activer/désactiver le calcul de voisinage cyclique. Initialement, il est activé.
 - Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est activé.
 
+
+## Contribution
+
+Ce projet est strictement personnel. Une contribution de votre part pourrait nous envoyer en conseil de discipline.
+Cependant, vous pouvez me faire part de votre avis et de vos conseils par [mail](mailto:leon.gall@etu.unistra.fr).
+
+## Auteurs
+
+Les codes de ce projet ont été écrits par [Léon GALL](@lgall), ainsi que par l'équipe pédagogique de la licence informatique.
