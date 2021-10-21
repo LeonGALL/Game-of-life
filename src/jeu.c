@@ -101,7 +101,7 @@ void evolue_vieillissement (grille *g, grille *gc){
 			if (est_vivante(i,j,*g)) 
 			{ // evolution d'une cellule vivante
 				vieillir(i,j,*g);
-				if ( (v!=2 && v!= 3) || age(i,j,*g)>8) set_morte(i,j,*g);
+				if ( (v!=2 && v!= 3) || age(i,j,*g)>=8) set_morte(i,j,*g);
 			}
 			else 
 			{ // evolution d'une cellule morte

@@ -2,4 +2,3 @@ obj/
 bin/
 documentation/
 .DS_Store
-#.gitignore

@@ -61,17 +61,16 @@ En général, ce sera :
 
 - Touche <kbd>q</kbd> pour quitter le jeu.
 - Touche <kbd>n</kbd> pour entrer le nom d'une nouvelle grille.
-```
+```bash
 n <CHEMIN FICHIER GRILLE>
 ```
 - Touche <kbd>c</kbd> pour activer/désactiver le calcul de voisinage cyclique. Initialement, il est activé.
-- Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est activé.
+- Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est désactivé.
 
 
 ## Contribution
 
 Ce projet est strictement personnel. Une contribution de votre part pourrait nous envoyer en conseil de discipline.
-Cependant, vous pouvez me faire part de votre avis et de vos conseils par [mail](mailto:leon.gall@etu.unistra.fr).
 
 ## Auteurs
 

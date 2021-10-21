@@ -169,20 +169,14 @@ void debut_jeu(grille *g, grille *gc){
 				} else {
 					compte_voisins_vivants = compte_voisins_vivants_cyclique;
 				}
-				/* SUIVANT SI IL FAUT OU NON PASSER À L'ÉVOLUTION SUIVANTE DIRECTEMENT
-				while ((c=getchar()) != '\n'); // On neutralise le saut à la ligne pour ne pas passer à l'evolution suivante
-				printf("\n\e[2A");
-				*/
+				printf("\033[1A\033[2K\n"); // efface la ligne.
 				break;
 			}
 			case 'v':
 			{ // Touche "v" pour activer/désactiver le vieillissement
 				if (evolue == evolue_vieillissement) unset_vieillissement();
 				else set_vieillissement();
-				/* SUIVANT SI IL FAUT OU NON PASSER À L'ÉVOLUTION SUIVANTE DIRECTEMENT
-				while ((c=getchar()) != '\n'); // On neutralise le saut à la ligne pour ne pas passer à l'evolution suivante
-				printf("\n\e[2A");
-				*/
+				printf("\033[1A\033[2K\n"); // efface la ligne.
 			break;
 			}
 			default : 

@@ -26,7 +26,7 @@ int main (int argc, char ** argv) {
 	grille g, gc;
 	init_grille_from_file(argv[1],&g);
 	alloue_grille (g.nbl, g.nbc, &gc);
-	set_vieillissement(); // Par défaut, le vieillissement est activé.
+	unset_vieillissement(); // Par défaut, le vieillissement est désactivé.
 	affiche_tout(g,0); // On affiche le temps (initial d'où 0) et la grille.
 	
 	debut_jeu(&g, &gc);

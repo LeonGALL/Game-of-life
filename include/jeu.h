@@ -13,8 +13,8 @@
 
 /**
  * \fn static inline int modulo(int i, int m);
- * \param i ligne
- * \param j colonne
+ * \param i un index (ligne ou colonne)
+ * \param m nombre de lignes ou colonnes
  * \brief Cette fonction est un modulo modifié pour traiter correctement les bords i=0 et j=0 dans le calcul des voisins avec bords cycliques.
  */
 static inline int modulo(int i, int m) {return (i+m)%m;}
@@ -27,7 +27,7 @@ static inline int modulo(int i, int m) {return (i+m)%m;}
  * \return Retorune l'âge de la cellule.
  * \brief Cette fonction indique l'âge de la cellule.
  */
-static inline int age (int i, int j, grille g){ return g.cellules[i][j]; }
+static inline int age (int i, int j, grille g){ return g.cellules[i][j]-1; }
 
 /**
  * \fn static inline void vieillir (int i, int j, grille g);

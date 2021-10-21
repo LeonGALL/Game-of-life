@@ -1,11 +1,12 @@
 CC = gcc
 CFLAGS = -g -Wall
+IFLAGS = -I $(HPATH)
 OPATH = obj/
 SPATH = src/
 HPATH = include/
 BPATH = bin/
 
-VERSION=2.0
+VERSION=2_0_5
 
 ARCHIVE = $(SPATH) $(HPATH) makefile Doxyfile
 ARCHIVENAME = GallLéon-GoL-$(VERSION)
@@ -26,18 +27,17 @@ $(EXEC) : $(OBJETS)
 
 $(OPATH)%.o : %.c
 	@mkdir -p $(OPATH)
-	$(CC) $(CFLAGS) -o $@ -c $< -I $(HPATH)
+	$(CC) $(CFLAGS) -o $@ -c $< $(IFLAGS)
 
 dist :
 	tar -Jcvf $(ARCHIVENAME).tar.xz $(ARCHIVE)
 
 docs :
-	@rm -rf documentation/
 	doxygen Doxyfile
 
 debug :
 	gdb ./$(BPATH)$(EXEC)
 	
 clean : 
-	rm $(OPATH)*.o && rm $(BPATH)$(EXEC)
+	rm $(OPATH)*.o && rm $(BPATH)$(EXEC) && rm -rf documentation/
 
