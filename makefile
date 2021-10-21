@@ -39,5 +39,5 @@ debug :
 	gdb ./$(BPATH)$(EXEC)
 	
 clean : 
-	rm $(OPATH)*.o && rm $(BPATH)$(EXEC) && rm -rf documentation/
+	rm -rf $(OPATH) && rm -rf $(BPATH) && rm -rf documentation/
 
