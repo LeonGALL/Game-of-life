@@ -39,6 +39,15 @@ void init_grille_from_file (char * filename, grille* g);
 static inline void set_vivante(int i, int j, grille g){g.cellules[i][j] = 1;}
 
 /**
+ * \fn static inline void set_non_viable(int i, int j, grille g);
+ * \param i ligne
+ * \param j colonne
+ * \param g une grille
+ * \brief Cette fonction rend non viable la cellule (i,j) de la grille g.
+ */
+static inline void set_non_viable(int i, int j, grille g){g.cellules[i][j] = -1;}
+
+/**
  * \fn static inline void set_morte(int i, int j, grille g);
  * \param i ligne
  * \param j colonne
@@ -54,7 +63,16 @@ static inline void set_morte(int i, int j, grille g){g.cellules[i][j] = 0;}
  * \param g une grille
  * \brief teste si la cellule (i,j) de la grille g est vivante.
  */
-static inline int est_vivante(int i, int j, grille g){return g.cellules[i][j] != 0;}
+static inline int est_vivante(int i, int j, grille g){return (g.cellules[i][j] != 0 && g.cellules[i][j] != -1);}
+
+/**
+ * \fn static inline void est_viable(int i, int j, grille g);
+ * \param i ligne
+ * \param j colonne
+ * \param g une grille
+ * \brief teste si la cellule (i,j) de la grille g est viable.
+ */
+static inline int est_viable(int i, int j, grille g){return (g.cellules[i][j] != -1);}
 
 // recopie gs dans gd (sans allocation)
 void copie_grille (grille gs, grille gd);

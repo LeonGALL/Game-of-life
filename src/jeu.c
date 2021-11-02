@@ -75,7 +75,7 @@ void evolue_sans_vieillir (grille *g, grille *gc){
 				if ( v!=2 && v!= 3 ) set_morte(i,j,*g);
 				else set_vivante(i,j,*g); // On réinitialise son âge à 1 (au cas où elle avait déjà vieilli précédemment)
 			}
-			else 
+			else if (est_viable(i,j,*g))
 			{ // evolution d'une cellule morte
 				if ( v==3 ) set_vivante(i,j,*g);
 			}
