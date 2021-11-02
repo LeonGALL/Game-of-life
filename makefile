@@ -39,5 +39,5 @@ debug :
 	gdb ./$(BPATH)$(EXEC)
 	
 clean : 
-	rm -rf $(OPATH) && rm -rf $(BPATH) && rm -rf doc/ && rm *.tar.xz
+	rm -rf $(OPATH) && rm -rf $(BPATH) && rm -rf doc/ && rm -f *.tar.xz
 
