@@ -1,6 +1,6 @@
 /** 
- * \file main.c 
- * Fichier principal.
+ * \file main_cairo.c 
+ * Fichier principal, avec jeu graphique.
  * \author Léon GALL
  */
 

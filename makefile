@@ -6,9 +6,6 @@ SPATH = src/
 HPATH = include/
 BPATH = bin/
 
-CPPFLAGS += -Iinclude -I/usr/include/cairo
-LDFLAGS += -lcairo -lm -lX11
-
 VERSION=4_0_1
 
 ARCHIVE = $(SPATH) $(HPATH) makefile Doxyfile README.md
@@ -21,31 +18,26 @@ vpath %.c $(SPATH)
 vpath %.o $(OPATH)
 
 SOURCES = $(wildcard $(SPATH)*.c)
-OBJETS = $(patsubst %.c,$(OPATH)%.o,$(notdir $(SOURCES)))
+OBJETS_ = $(patsubst %.c,$(OPATH)%.o,$(notdir $(SOURCES)))
 
 ##### COMPILATION JEU DE LA VIE TERMINAL
 ifeq ($(MODE),TEXT)	
+OBJETS= $(filter-out %_cairo.o,$(OBJETS_))
+
+##### COMPILATION JEU DE LA VIE GRAPHIQUE
+else
+IFLAGS += -I/usr/include/cairo
+LDFLAGS += -lcairo -lm -lX11
+OBJETS = $(filter-out %_terminal.o, $(OBJETS_))
+endif
 
 $(EXEC) : $(OBJETS)
 	@mkdir -p $(BPATH)
-	$(CC) $(CFLAGS) -o $(BPATH)$(EXEC) $^
+	$(CC) $(CFLAGS) -o $(BPATH)$(EXEC) $^ $(LDFLAGS)
 
 $(OPATH)%.o : %.c
 	@mkdir -p $(OPATH)
 	$(CC) $(CFLAGS) -o $@ -c $< $(IFLAGS)
-
-##### COMPILATION JEU DE LA VIE GRAPHIQUE
-else
-
-$(EXEC) : $(OBJETS)
-	@mkdir -p $(BPATH)
-	$(CC) $(CFLAGS) -o $(BPATH)$(EXEC) $^
-
-$(OPATH)%.o : %.c
-	@mkdir -p $(OPATH)
-	$(CC) $(CFLAGS) -o $@ -c $< $(CPPFLAGS) $(LDFLAGS)
-
-endif
 
 dist :
 	tar -Jcvf $(ARCHIVENAME).tar.xz $(ARCHIVE)
