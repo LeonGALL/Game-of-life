@@ -29,7 +29,7 @@ La programmation de ce projet s'est décomposée en 5 niveaux :
 - [x] [Niveau 1](https://moodle.unistra.fr/pluginfile.php/557570/mod_resource/content/5/GoL_niveau1.pdf)
 - [x] [Niveau 2](https://moodle.unistra.fr/pluginfile.php/557571/mod_resource/content/7/GoL_niveau2.pdf)
 - [x] [Niveau 3](https://moodle.unistra.fr/pluginfile.php/557572/mod_resource/content/5/GoL_niveau3.pdf)
-- [ ] [Niveau 4]() _À venir_
+- [ ] [Niveau 4](https://moodle.unistra.fr/pluginfile.php/557573/mod_resource/content/5/GoL_niveau4.pdf)
 - [ ] [Niveau 5]() _À venir_
 
 À chaque niveau correspond un numéro de version, comme expliqué dans la rubrique suivante.
