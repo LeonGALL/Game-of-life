@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 #include "grille.h"
-#include "io.h"
+#include "io_cairo.h"
 #include "jeu.h"
 
 /**
@@ -27,9 +27,8 @@ int main (int argc, char ** argv) {
 	init_grille_from_file(argv[1],&g);
 	alloue_grille (g.nbl, g.nbc, &gc);
 	unset_vieillissement(); // Par défaut, le vieillissement est désactivé.
-	affiche_tout(g,0); // On affiche le temps (initial d'où 0) et la grille.
 	
-	debut_jeu(&g, &gc);
+	debut_jeu_cairo(&g, &gc);
 
 	libere_grille(&g);
 	libere_grille(&gc);

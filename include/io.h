@@ -1,6 +1,6 @@
 /** 
  * \file io.h
- * Fichier contenant les prototypes des fonctions de io.c.
+ * Fichier contenant les prototypes des fonctions de io_terminal.c.
  * \author Léon GALL
  */
 

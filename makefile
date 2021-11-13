@@ -25,6 +25,11 @@ ifeq ($(MODE),TEXT)
 OBJETS= $(filter-out %_cairo.o,$(OBJETS_))
 
 ##### COMPILATION JEU DE LA VIE GRAPHIQUE
+
+else ifeq ($(MODE),PERSO)
+IFLAGS += -I/sw/include/cairo -I/usr/X11/include/
+LDFLAGS += -L/sw/lib/ -L/usr/X11/lib/ -lcairo -lm -lX11
+OBJETS = $(filter-out %_terminal.o, $(OBJETS_))
 else
 IFLAGS += -I/usr/include/cairo
 LDFLAGS += -lcairo -lm -lX11

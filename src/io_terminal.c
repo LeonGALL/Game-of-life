@@ -1,5 +1,5 @@
 /** 
- * \file io.c 
+ * \file io_terminal.c 
  * Fichier s'occupant des entrées/sorties du programme.
  * \author Léon GALL
  */
