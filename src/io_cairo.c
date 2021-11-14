@@ -31,16 +31,15 @@ void affiche_grille_cairo(grille g, cairo_surface_t *surface, Size size){
         cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
       	cairo_rectangle(cr,position_x*i,position_y*j,position_x,position_y);
         cairo_fill(cr);	
-        if ((age=print_age(g.cellules[i][j])) != '0') {
+        if ((age=print_age(g.cellules[i][j])) != 'O') {
           cairo_text_extents_t te;
           char str[2];
           str[0]=age;
           str[1]='\0';
-          cairo_set_source_rgb (cr, 1.0, 0.0, 0.0);
-          cairo_select_font_face (cr, "Georgia",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
-          cairo_set_font_size (cr, 1.2);
+          cairo_set_source_rgb (cr, 0, 0, 0);
+          cairo_set_font_size (cr, MIN(position_x,position_y)/3);
           cairo_text_extents (cr,str, &te);
-          cairo_move_to(cr,position_x*i+((position_x-te.width)/2),position_y*j+((position_y-te.height)/2));
+          cairo_move_to(cr, position_x*i+((position_x-te.width)/2-te.x_bearing), position_y*j+((position_y-te.height)/2)-te.y_bearing);
           cairo_show_text (cr,str);
         }
       }
@@ -94,7 +93,7 @@ void debut_jeu_cairo(grille *g, grille *gc){
   Atom wmDeleteWindow = XInternAtom(dpy, "WM_DELETE_WINDOW", 1);
   XSetWMProtocols(dpy, win, &wmDeleteWindow, 1);
   // Creation de la surface cairo
-	cairo_surface_t *surface = cairo_xlib_surface_create(dpy, win, DefaultVisual(dpy, 0), MAX_X, MAX_Y);
+	cairo_surface_t *surface = cairo_xlib_surface_create(dpy, win, DefaultVisual(dpy, 0), SIZEX, SIZEY);
 
   // taille courante de la fenêtre
   Size size;
@@ -121,6 +120,7 @@ void debut_jeu_cairo(grille *g, grille *gc){
     else if (e.type == ConfigureNotify){
       size.x = e.xconfigure.width;
       size.y = e.xconfigure.height;
+      cairo_xlib_surface_set_size(surface,size.x,size.y);
     }
   }
 

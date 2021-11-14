@@ -20,8 +20,7 @@
 
 #define SIZEY 500
 #define SIZEX 500
-#define MAX_X 8000
-#define MAX_Y 8000
+#define MIN(X,Y) ((X<Y)?X:Y)
 
 typedef struct {
   int x;
