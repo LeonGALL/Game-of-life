@@ -29,7 +29,7 @@ La programmation de ce projet s'est décomposée en 5 niveaux :
 - [x] [Niveau 1](https://moodle.unistra.fr/pluginfile.php/557570/mod_resource/content/5/GoL_niveau1.pdf)
 - [x] [Niveau 2](https://moodle.unistra.fr/pluginfile.php/557571/mod_resource/content/7/GoL_niveau2.pdf)
 - [x] [Niveau 3](https://moodle.unistra.fr/pluginfile.php/557572/mod_resource/content/5/GoL_niveau3.pdf)
-- [ ] [Niveau 4](https://moodle.unistra.fr/pluginfile.php/557573/mod_resource/content/5/GoL_niveau4.pdf)
+- [x] [Niveau 4](https://moodle.unistra.fr/pluginfile.php/557573/mod_resource/content/5/GoL_niveau4.pdf)
 - [ ] [Niveau 5]() _À venir_
 
 À chaque niveau correspond un numéro de version, comme expliqué dans la rubrique suivante.
@@ -39,16 +39,30 @@ La programmation de ce projet s'est décomposée en 5 niveaux :
 Le versionnement à l'aide de tags peut se lire de cette façon : \<NIVEAU\>.0.\<VERSION\>
 
 - Le niveau se lit au début : 1 représentera le niveau 1, ...
-- La version de ce niveau se lit à la fin : la première version sera numérotée 0 (non noté), la seconde 1, ... _(et oui, les informaticiens commencent le compte à 0 :wink:)_
+- La version de ce niveau se lit à la fin : la première version sera numérotée 0 (non noté), la seconde 1, ... _(et oui, les informaticiens commencent le compte à 0_ :wink:_)_
 
 La dernière version d'un niveau est donc celle avec le numéro de \<VERSION\> le plus haut.
 
 ## Utilisation
 ### Compilation et lancement du jeu
 
-Pour compiler ce jeu il suffit de se placer au sein du projet dans un terminal puis d'entrer la commande `make`.
+Pour compiler ce jeu, deux modes sont disponibles :
 
-Après compilation, pour lancer le jeu, il faut entrer la commande suivante :
+#### Mode terminal
+
+Si vous ne possédez pas les ressources nécessaires pour lancer la compilation du jeu graphique, ou bien que vous préférez simplement le mode en ligne de commandes, vous avez la possibilité de compiler en utilisant :
+
+```bash
+make MODE=TEXTE
+```
+
+#### Mode graphique
+
+Sinon, vous pouvez utiliser la commande `make` pour compiler la version graphique du jeu. C'est bien plus agréable à regarder que la version en ligne de commande...
+
+#### Lancement
+
+Après compilation, indépendament de son mode, pour lancer le jeu, il faut entrer la commande suivante :
 ```bash
 ./bin/main <CHEMIN FICHIER GRILLE>
 ```
@@ -59,6 +73,8 @@ En général, ce sera :
 
 ### Contrôle des conditions de jeu
 
+#### Mode terminal
+
 - Touche <kbd>q</kbd> pour quitter le jeu.
 - Touche <kbd>n</kbd> pour entrer le nom d'une nouvelle grille.
 ```bash
@@ -66,7 +82,17 @@ n <CHEMIN FICHIER GRILLE>
 ```
 - Touche <kbd>c</kbd> pour activer/désactiver le calcul de voisinage cyclique. Initialement, il est activé.
 - Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est désactivé.
+- Touche <kbd>enter</kbd> pour évoluer d'un pas de temps.
 
+#### Mode graphique
+
+- Touche <kbd>n</kbd> pour entrer le nom d'une nouvelle grille.
+- Touche <kbd>c</kbd> pour activer/désactiver le calcul de voisinage cyclique. Initialement, il est activé.
+- Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est désactivé.
+- Clic <kbd>Clic droit</kbd> pour évoluer d'un pas de temps.
+
+_Lorsque vous êtes sur le menu d'ouverture d'une nouvelle grille, un clic droit vous fera sortir de ce menu, et revenir à la grille chargée précédemment._
+- Clic <kbd>Clic gauche</kbd> pour quitter le jeu.
 
 ## Contribution
 

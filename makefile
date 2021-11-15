@@ -6,7 +6,7 @@ SPATH = src/
 HPATH = include/
 BPATH = bin/
 
-VERSION=4_0_1
+VERSION=4_0_4
 
 ARCHIVE = $(SPATH) $(HPATH) makefile Doxyfile README.md
 ARCHIVENAME = GallLéon-GoL-$(VERSION)
