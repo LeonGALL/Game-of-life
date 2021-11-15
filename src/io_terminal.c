@@ -134,6 +134,7 @@ int scan(char tab[],int size){
  */
 void debut_jeu(grille *g, grille *gc){
 	int temps = 0;
+	affiche_tout(*g,temps); // On affiche le temps (initial d'où 0) et la grille.
 	compte_voisins_vivants = compte_voisins_vivants_cyclique; // Par défaut le comptage du voisinage se fait de façon cyclique
 	char c = getchar(); 
 	while (c != 'q') // touche 'q' pour quitter
