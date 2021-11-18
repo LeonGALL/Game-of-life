@@ -28,11 +28,11 @@ OBJETS= $(filter-out %_cairo.o,$(OBJETS_))
 
 else ifeq ($(MODE),PERSO) ### PATH LIBRAIRIES ORDINATEUR PERSONNEL
 IFLAGS += -I/sw/include/cairo -I/usr/X11/include/
-LDFLAGS += -L/sw/lib/ -L/usr/X11/lib/ -lcairo -lm -lX11
+LDFLAGS += -L/sw/lib/ -L/usr/X11/lib/ -lcairo -lm -lX11 -lfontconfig
 OBJETS = $(filter-out %_terminal.o, $(OBJETS_))
 else ### PATH LIBRAIRIES ORDINATEUR UNISTRA
 IFLAGS += -I/usr/include/cairo
-LDFLAGS += -lcairo -lm -lX11
+LDFLAGS += -lcairo -lm -lX11 -lfontconfig
 OBJETS = $(filter-out %_terminal.o, $(OBJETS_))
 endif
 

@@ -42,7 +42,7 @@ int change_grille_cairo(grille* g, grille* gc, Window win, Display* dpy, cairo_s
           break;
         } else if (keyBuf[index]==0x8){
           if (index>0) --index;
-          if (((keyBuf[index]>>8)&0xffffff)==0xffffff)keyBuf[index--]='\0';
+          if (((keyBuf[index]>>8)&0xffffff)==0xffffff)keyBuf[index--]='\0'; // Si il s'agit d'un caractère composé ('é' par exemple)
           keyBuf[index]='\0';
         } else {
           index+=count;
@@ -298,4 +298,8 @@ void debut_jeu(grille *g, grille *gc){
   cairo_surface_destroy(surface);
   // Fermeture de l'interface graphique
   XCloseDisplay(dpy);
+
+  // Gestion des fuites de mémoires cairo.
+  FcFini();
+  cairo_debug_reset_static_data();
 }
