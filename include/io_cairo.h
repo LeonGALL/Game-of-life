@@ -31,5 +31,6 @@ typedef struct {
 void affiche_cairo(grille g, cairo_surface_t *surface, Size size, int temps);
 void affiche_str_cairo(cairo_surface_t *surface, Size size, float pos_x, float pos_y, char str[], int mode);
 int change_grille_cairo(grille* g, grille* gc, Window win, Display* dpy, cairo_surface_t* surface, Size* size, Atom* wmDeleteWindow);
+void quitter(cairo_surface_t *surface, Display* dpy);
 
 #endif

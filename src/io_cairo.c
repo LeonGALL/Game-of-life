@@ -36,11 +36,11 @@ int change_grille_cairo(grille* g, grille* gc, Window win, Display* dpy, cairo_s
     if (e.type == KeyPress){
       ic = XCreateIC(im, XNInputStyle, XIMPreeditNothing | XIMStatusNothing, XNClientWindow, win, NULL); 
       if ((count = Xutf8LookupString(ic,&e.xkey, keyBuf+index, FNAME_S, NULL, NULL))!=0) {
-        if (keyBuf[index]==0xd) {
+        if (keyBuf[index]==0xd) { // Si retour à la ligne
           keyBuf[index]='\0';
           if (keyBuf[0]=='\0') continue;
           break;
-        } else if (keyBuf[index]==0x8){
+        } else if (keyBuf[index]==0x8){ // Suppression
           if (index>0) --index;
           if (((keyBuf[index]>>8)&0xffffff)==0xffffff)keyBuf[index--]='\0'; // Si il s'agit d'un caractère composé ('é' par exemple)
           keyBuf[index]='\0';
@@ -57,15 +57,15 @@ int change_grille_cairo(grille* g, grille* gc, Window win, Display* dpy, cairo_s
       if (e.xbutton.button==1){ // Left clic
         return 2; // On retourne à l'état précédent (utile si l'appui sur 'n' était une erreur)
       } else if (e.xbutton.button==3){ // Right clic
-        cairo_surface_destroy(surface); // Destruction de la surface cairo
-        XCloseDisplay(dpy); // Fermeture de l'interface graphique
+        // On quitte X11 et cairo
+        quitter(surface,dpy);
         return -1;
       }
     } else if (e.type == ClientMessage){
       // Cas clic de sortie
         if (e.xclient.data.l[0] == *wmDeleteWindow) {  // Si clic sur la fermeture de la fenêtre
-          cairo_surface_destroy(surface); // Destruction de la surface cairo
-          XCloseDisplay(dpy); // Fermeture de l'interface graphique
+          // On quitte X11 et cairo
+          quitter(surface,dpy);
           return -1;
         }
     } else if (e.type == ConfigureNotify){
@@ -98,7 +98,21 @@ int change_grille_cairo(grille* g, grille* gc, Window win, Display* dpy, cairo_s
   return 1;
 }
 
-
+/**
+ * \fn void quitter(cairo_surface_t *surface, Display* dpy);
+ * \param surface un pointeur vers une surface cairo
+ * \param dpy Le X11 display
+ * \brief Cette fonction quitte cairo et X11 proprement.
+ */
+void quitter(cairo_surface_t *surface, Display* dpy){
+  // Destruction de la surface cairo
+  cairo_surface_destroy(surface);
+  // Fermeture de l'interface graphique
+  XCloseDisplay(dpy);
+  // Gestion des fuites de mémoires cairo.
+  FcFini();
+  cairo_debug_reset_static_data();
+}
 
 /**
  * \fn void affiche_str_cairo(cairo_surface_t *surface, Size size, float pos_x, float pos_y, char str[], int mode);
@@ -266,12 +280,23 @@ void debut_jeu(grille *g, grille *gc){
 				else set_vieillissement();
         break;
       case 'n':
+        // Touche "n" pour changer de grille
         switch (change_grille_cairo(g,gc,win,dpy,surface,&size,&wmDeleteWindow)){
           case -1:
             return;
           case 1:
             temps = 0;
         }
+        break;
+      case 'q':
+        // Touche "q" pour quitter
+        // On quitte X11 et cairo
+        quitter(surface,dpy);
+        return;
+      case 0xff0d:
+        // Retour à la ligne
+        evolue(g,gc);
+				temps++;
         break;
       }
     } else if (e.type == ButtonPress){
@@ -294,12 +319,6 @@ void debut_jeu(grille *g, grille *gc){
     }
   }
 
-  // Destruction de la surface cairo
-  cairo_surface_destroy(surface);
-  // Fermeture de l'interface graphique
-  XCloseDisplay(dpy);
-
-  // Gestion des fuites de mémoires cairo.
-  FcFini();
-  cairo_debug_reset_static_data();
+  // On quitte X11 et cairo
+  quitter(surface,dpy);
 }
