@@ -6,7 +6,7 @@ SPATH = src/
 HPATH = include/
 BPATH = bin/
 
-VERSION=4_0_4
+VERSION=5_0_0
 
 ARCHIVE = $(SPATH) $(HPATH) makefile Doxyfile README.md
 ARCHIVENAME = GallLéon-GoL-$(VERSION)
@@ -19,6 +19,7 @@ vpath %.o $(OPATH)
 
 SOURCES = $(wildcard $(SPATH)*.c)
 OBJETS_ = $(patsubst %.c,$(OPATH)%.o,$(notdir $(SOURCES)))
+LIBOBJ = $(filter %jeu.o, $(OBJETS_))  $(filter %grille.o, $(OBJETS_))
 
 ##### COMPILATION JEU DE LA VIE TERMINAL
 ifeq ($(MODE),TEXTE)	
@@ -36,13 +37,17 @@ LDFLAGS += -lcairo -lm -lX11 -lfontconfig
 OBJETS = $(filter-out %_terminal.o, $(OBJETS_))
 endif
 
-$(EXEC) : $(OBJETS)
+$(EXEC) : $(OBJETS) #lib
 	@mkdir -p $(BPATH)
 	$(CC) $(CFLAGS) -o $(BPATH)$(EXEC) $^ $(LDFLAGS)
 
 $(OPATH)%.o : %.c
 	@mkdir -p $(OPATH)
 	$(CC) $(CFLAGS) -o $@ -c $< $(IFLAGS)
+
+lib:
+	ar -crv libjeu.a $(LIBOBJ)
+	ranlib libjeu.a
 
 dist :
 	tar -Jcvf $(ARCHIVENAME).tar.xz $(ARCHIVE)
