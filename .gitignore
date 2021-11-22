@@ -1,5 +1,6 @@
 obj/
 bin/
+lib/
 documentation/
 *.tar.xz
 .DS_Store
