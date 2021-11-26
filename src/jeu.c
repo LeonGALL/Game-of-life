@@ -129,3 +129,23 @@ void unset_vieillissement(){
 	print_age = print_age_sans_vieillissement; 
 	evolue = evolue_sans_vieillir; 
 }
+
+/**
+ * \fn int oscilliante(grille g);
+ * \param g une grille
+ * \brief Cette fonction teste si une grille est oscilliante.
+ * \return Retourne -1 si la grille n'est pas oscilliante, autrement sa période d'oscilliation.
+ */
+int oscilliante(grille g){
+	grille first, gc;
+	copie_grille(g, first);
+	evolue(&g, &gc);
+	int oscilliation = 1;
+	while (!grille_morte(g) && oscilliation < 100000){
+		if (egalite(first,g)) 
+			return oscilliation;
+		oscilliation++;
+		evolue(&g, &gc);
+	}
+	return -1;
+}

@@ -89,3 +89,33 @@ void copie_grille (grille gs, grille gd){
 	for (i=0; i<gs.nbl; ++i) for (j=0; j<gs.nbc; ++j) gd.cellules[i][j] = gs.cellules[i][j];
 	return;	
 }
+
+/**
+ * \fn int egalite(grille* g, grille* g1);
+ * \param g pointeur vers une grille
+ * \param g1 pointeur vers une grille
+ * \brief Cette fonction teste l'égalité de deux grilles.
+ * \return Retourne 1 si les grilles ont les mêmes valeurs, 0 sinon.
+ */
+int egalite(grille* g, grille* g1){
+	if (g->nbl != g1->nbl || g->nbc != g1->nbc) return 0;
+	for (int i=0; i<g->nbl; i++)
+		for (int j=0; j<g->nbc; j++)
+			if (g[i][j] != g1[i][j]) 
+				return 0;
+	return 1;
+}
+
+/**
+ * \fn int grille_morte(grille g);
+ * \param g une grille
+ * \brief Cette fonction teste si une grille est morte.
+ * \return Retourne 1 si la grille est morte, 0 sinon.
+ */
+int grille_morte(grille g){
+	for (int i=0; i<g.nbl; i++)
+		for (int j=0; j<g.nbc; j++)
+			if (est_vivante(i,j,g)) 
+				return 0;
+	return 1;
+}
