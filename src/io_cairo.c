@@ -5,6 +5,8 @@
  */
 #include "io_cairo.h"
 
+
+
 /**
  * \fn int change_grille_cairo(grille* g, grille* gc, Window win, Display* dpy, cairo_surface_t* surface, Size* size, Atom* wmDeleteWindow);
  * \relatesalso grille
@@ -98,6 +100,94 @@ int change_grille_cairo(grille* g, grille* gc, Window win, Display* dpy, cairo_s
   return 1;
 }
 
+
+
+/**
+ * \fn int affiche_oscilliation(Oscille osc, Window win, Display* dpy, cairo_surface_t* surface, Size* size, Atom* wmDeleteWindow);
+ * \relatesalso Oscille
+ * \param osc Une oscilliation
+ * \param win Le X11 window
+ * \param dpy Le X11 display
+ * \param surface un pointeur vers une surface cairo
+ * \param size un pointeur sur la taille de la fenêtre
+ * \param wmDeleteWindow permet la fermeture de la fenêtre
+ * \return Retourne le status de sortie de la fonction.
+ * \brief Cette fonction se charge d'afficher le test d'oscilliation.
+ */
+int affiche_oscilliation(Oscille osc, Window win, Display* dpy, cairo_surface_t* surface, Size* size, Atom* wmDeleteWindow){
+  XEvent e;
+  char text[50];
+  for (;;){
+    // On met l'arrière plan en noir
+    cairo_t *cr = cairo_create(surface);
+	  cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+	  cairo_paint(cr);
+    // Affichage du test
+    cairo_text_extents_t te;
+    cairo_set_font_size (cr, MIN(size->x,size->y)*0.075);
+    if (osc.periode == -1 || osc.delai == -1){ // Affichage lorsque la grille n'est pas oscilliante
+      sprintf(text,"Grille non oscilliante...");
+      cairo_set_source_rgb (cr, 1, 0, 0); // ROUGE
+      cairo_text_extents (cr,text, &te);
+      cairo_move_to(cr,(size->x-te.width)/2 - te.x_bearing, (size->y-te.height)/2 - te.y_bearing);
+    } else { // Affichage losque la grille est oscilliante
+      sprintf(text,"Grille oscilliante !");
+      char text1[50];
+      sprintf(text1,"Période : %d",osc.periode); // Période
+      char text2[50];
+      sprintf(text2,"Délai : %d",osc.delai); // Délai
+      cairo_set_source_rgb (cr, 0, 1, 0); // VERT
+      cairo_text_extents (cr,text, &te);
+      cairo_text_extents_t t1;
+      cairo_text_extents (cr,text1, &t1); // Période
+      cairo_text_extents_t t2;
+      cairo_text_extents (cr,text2, &t2); // Délai
+      cairo_move_to(cr,(size->x-t1.width)/2 - t1.x_bearing, (size->y-(t1.height+t2.height*2+te.height*2))/2 - (te.y_bearing+t1.y_bearing+t2.y_bearing));
+      cairo_show_text (cr,text1); // Période
+      cairo_move_to(cr,(size->x-t2.width)/2 - t2.x_bearing, (size->y-(t1.height+t2.height*2+te.height*2))/2 - (te.y_bearing+t1.y_bearing+t2.y_bearing) + t2.height*2);
+      cairo_show_text (cr,text2); // Délai
+      cairo_move_to(cr,(size->x-te.width)/2 - te.x_bearing, (size->y-(t1.height+t2.height*2+te.height*2))/2 - (te.y_bearing+t1.y_bearing+t2.y_bearing) - te.height*2);
+    }
+    cairo_show_text (cr,text); // Texte
+	  cairo_destroy(cr);
+    
+    // Attente d'évênements
+    XNextEvent(dpy,&e);
+    // Cas touche pressée
+    if (e.type == KeyPress){
+      if (XLookupKeysym((XKeyEvent*) &e, 0) == 'q'){
+          // On quitte X11 et cairo
+          quitter(surface,dpy);
+          return -1;
+      } else return 1;
+    } else if (e.type == ButtonPress){
+      // Cas clic
+      if (e.xbutton.button==1){ // Left clic
+        return 1; // On retourne à l'affichage des grilles
+      } else if (e.xbutton.button==3){ // Right clic
+        // On quitte X11 et cairo
+        quitter(surface,dpy);
+        return -1;
+      }
+    } else if (e.type == ClientMessage){
+      // Cas clic de sortie
+        if (e.xclient.data.l[0] == *wmDeleteWindow) {  // Si clic sur la fermeture de la fenêtre
+          // On quitte X11 et cairo
+          quitter(surface,dpy);
+          return -1;
+        }
+    } else if (e.type == ConfigureNotify){
+      // Cas de modification de la taille
+      size->x = e.xconfigure.width;
+      size->y = e.xconfigure.height;
+      cairo_xlib_surface_set_size(surface,size->x,size->y);
+    }
+  }
+  return 1;
+}
+
+
+
 /**
  * \fn void quitter(cairo_surface_t *surface, Display* dpy);
  * \param surface un pointeur vers une surface cairo
@@ -114,6 +204,8 @@ void quitter(cairo_surface_t *surface, Display* dpy){
   cairo_debug_reset_static_data();
 }
 
+
+
 /**
  * \fn void affiche_str_cairo(cairo_surface_t *surface, Size size, float pos_x, float pos_y, char str[], int mode);
  * \param surface un pointeur vers une surface cairo
@@ -122,7 +214,7 @@ void quitter(cairo_surface_t *surface, Display* dpy){
  * \param pos_y hauteur d'une bande
  * \param str chaîne de caractères
  * \param mode mode d'affichage (si 1 alors opacité diminuée)
- * \brief Cette fonction affiche une chaîne de caratère.
+ * \brief Cette fonction affiche une chaîne de caratère dans l'espace de saisie. (Utile pour le changement de grille).
  */
 void affiche_str_cairo(cairo_surface_t *surface, Size size, float pos_x, float pos_y, char str[], int mode){
   cairo_t *cr = cairo_create(surface);
@@ -293,6 +385,10 @@ void debut_jeu(grille *g, grille *gc){
         // On quitte X11 et cairo
         quitter(surface,dpy);
         return;
+      case 'o':
+        // Touche "o" pour tester l'oscilliation.
+        if (affiche_oscilliation(oscilliante(*g),win,dpy,surface,&size,&wmDeleteWindow) == -1) return; // On affiche l'oscilliation
+        break;
       case 0xff0d:
         // Retour à la ligne
         evolue(g,gc);
