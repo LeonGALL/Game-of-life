@@ -84,7 +84,7 @@ n <CHEMIN FICHIER GRILLE>
 - Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est désactivé.
 - Touche <kbd>enter</kbd> pour évoluer d'un pas de temps.
 - Touche <kbd>o</kbd> pour tester l'oscilliation de la grille.
-    - Pour quitter ce test il suffit d'actionner la touche <kbd>enter</kbd>.
+    - _Pour quitter ce test il suffit d'actionner la touche <kbd>enter</kbd>._
 
 #### Mode graphique
 
@@ -92,11 +92,10 @@ n <CHEMIN FICHIER GRILLE>
 - Touche <kbd>c</kbd> pour activer/désactiver le calcul de voisinage cyclique. Initialement, il est activé.
 - Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est désactivé.
 - Touche <kbd>o</kbd> pour tester l'oscilliation de la grille.
-    - Pour quitter ce test il suffit d'actionner n'importe quelle touche ou de réaliser un <kbd>Clic droit</kbd>.
+    - _Pour quitter ce test il suffit d'actionner n'importe quelle touche ou de réaliser un <kbd>Clic droit</kbd>._
 - Clic <kbd>Clic droit</kbd> pour évoluer d'un pas de temps.
 - Touche <kbd>enter</kbd> pour évoluer d'un pas de temps.
-
-_Lorsque vous êtes sur le menu d'ouverture d'une nouvelle grille, un clic droit vous fera sortir de ce menu, et revenir à la grille chargée précédemment._
+    - _Lorsque vous êtes sur le menu d'ouverture d'une nouvelle grille, un clic droit vous fera sortir de ce menu, et revenir à la grille chargée précédemment._
 - Clic <kbd>Clic gauche</kbd> pour quitter le jeu.
 - Touche <kbd>q</kbd> pour quitter le jeu.
 
