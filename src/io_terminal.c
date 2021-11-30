@@ -164,7 +164,7 @@ void debut_jeu(grille *g, grille *gc){
 				break;
 			}
 			case 'c':
-			{ // Touche "c" pour activer/désactiver le voisinage cyclique 
+			{ // touche "c" pour activer/désactiver le voisinage cyclique 
 				if (compte_voisins_vivants == compte_voisins_vivants_cyclique){
 					compte_voisins_vivants = compte_voisins_vivants_non_cyclique;
 				} else {
@@ -174,11 +174,25 @@ void debut_jeu(grille *g, grille *gc){
 				break;
 			}
 			case 'v':
-			{ // Touche "v" pour activer/désactiver le vieillissement
+			{ // touche "v" pour activer/désactiver le vieillissement
 				if (evolue == evolue_vieillissement) unset_vieillissement();
 				else set_vieillissement();
 				printf("\033[1A\033[2K\n"); // efface la ligne.
 			break;
+			}
+			case 'o':
+			{ // touche "o" pour activer la recherche de cyclicité
+				Oscille osc = oscilliante(*g); // On charge l'oscilliation
+				efface(g->nbl,0); // On efface la grille
+
+				// On affiche l'oscilliation :
+				if (osc.periode == -1 || osc.delai == -1) printf("\nCette grille n'oscille pas...\n\n");
+				else printf("\nCette grille oscille !\nSa période est %d, et son délai avant oscilliation est %d.\n",osc.periode,osc.delai);
+				while (getchar() != '\n'); // On passe les inputs de validation du 'o'.
+				while (getchar() != '\n'); // On attends le retour à la ligne de sortie du test.
+				printf("\033[4A\033[0J\033[1A\n"); // efface le test.
+				affiche_tout(*g,temps); // On réaffiche la grille
+				break;
 			}
 			default : 
 			{ // touche non traitée

@@ -80,6 +80,4 @@ void copie_grille (grille gs, grille gd);
 // Cette fonction teste l'égalité de deux grilles
 int egalite(grille* g, grille* g1);
 
-// Cette fonction teste si une grille est morte
-int grille_morte(grille g);
 #endif

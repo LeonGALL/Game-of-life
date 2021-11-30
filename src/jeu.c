@@ -131,21 +131,36 @@ void unset_vieillissement(){
 }
 
 /**
- * \fn int oscilliante(grille g);
+ * \fn Oscille oscilliante(grille g);
  * \param g une grille
- * \brief Cette fonction teste si une grille est oscilliante.
- * \return Retourne -1 si la grille n'est pas oscilliante, autrement sa période d'oscilliation.
+ * \brief Cette fonction teste si une grille est oscilliante. (Si elle ne possède plus de cellules vivantes, elle est considérée comme oscilliante).
+ * \return Retourne {-1,-1} si la grille n'est pas oscilliante, autrement sa période d'oscilliation et son délai.
  */
-int oscilliante(grille g){
-	grille first, gc;
+Oscille oscilliante(grille g){
+	grille first, current, gc;
+	alloue_grille (g.nbl, g.nbc, &first);
+	alloue_grille (g.nbl, g.nbc, &current);
+	alloue_grille (g.nbl, g.nbc, &gc);
+
 	copie_grille(g, first);
-	evolue(&g, &gc);
-	int oscilliation = 1;
-	while (!grille_morte(g) && oscilliation < 100000){
-		if (egalite(first,g)) 
-			return oscilliation;
-		oscilliation++;
-		evolue(&g, &gc);
+	copie_grille(g, current);
+	evolue(&current, &gc);
+
+	for (int step = 0; step < MAX_STEP; step++){
+		for (int oscilliation = 1; oscilliation < MAX_OSCILLIATION; oscilliation++){
+			if (egalite(&first,&current)){ // On regarde l'égalité : Pour que ce soit oscilliant il faut qu'elles aient la même vielliesse (si vieillissement).
+				libere_grille(&first);
+				libere_grille(&current);
+				libere_grille(&gc);
+				return (Oscille) {oscilliation,step};
+			}
+			evolue(&current, &gc);
+		}
+		evolue(&first,&gc);
 	}
-	return -1;
+
+	libere_grille(&first);
+	libere_grille(&current);
+	libere_grille(&gc);
+	return (Oscille) {-1,-1};
 }

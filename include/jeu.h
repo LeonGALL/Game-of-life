@@ -10,7 +10,6 @@
 #include "grille.h"
 #include "io.h"
 
-
 /**
  * \fn static inline int modulo(int i, int m);
  * \param i un index (ligne ou colonne)
@@ -74,5 +73,18 @@ void set_vieillissement();
 
 // Désactive le vieillissement
 void unset_vieillissement();
+
+// Oscilliation
+#define MAX_STEP 200
+#define MAX_OSCILLIATION 200
+/**
+ * \brief structure Oscille : période d'oscilliation, délai avant oscilliation
+ */
+typedef struct {
+  int periode; /**< \brief Période */
+  int delai; /**< \brief Délai */
+} Oscille;
+
+Oscille oscilliante(grille g);
 
 #endif
