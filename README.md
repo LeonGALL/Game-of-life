@@ -83,12 +83,16 @@ n <CHEMIN FICHIER GRILLE>
 - Touche <kbd>c</kbd> pour activer/désactiver le calcul de voisinage cyclique. Initialement, il est activé.
 - Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est désactivé.
 - Touche <kbd>enter</kbd> pour évoluer d'un pas de temps.
+- Touche <kbd>o</kbd> pour tester l'oscilliation de la grille.
+    - Pour quitter ce test il suffit d'actionner la touche <kbd>enter</kbd>.
 
 #### Mode graphique
 
 - Touche <kbd>n</kbd> pour entrer le nom d'une nouvelle grille.
 - Touche <kbd>c</kbd> pour activer/désactiver le calcul de voisinage cyclique. Initialement, il est activé.
 - Touche <kbd>v</kbd> pour activer/désactiver le vieillissement des cellules. Initialement, il est désactivé.
+- Touche <kbd>o</kbd> pour tester l'oscilliation de la grille.
+    - Pour quitter ce test il suffit d'actionner n'importe quelle touche ou de réaliser un <kbd>Clic droit</kbd>.
 - Clic <kbd>Clic droit</kbd> pour évoluer d'un pas de temps.
 - Touche <kbd>enter</kbd> pour évoluer d'un pas de temps.
 
