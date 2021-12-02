@@ -8,7 +8,7 @@ HPATH = include/
 BPATH = bin/
 LPATH = lib/
 
-VERSION=5_0_2
+VERSION=5_0_3
 
 ARCHIVE = $(SPATH) $(HPATH) makefile Doxyfile README.md
 ARCHIVENAME = GallLéon-GoL-$(VERSION)
