@@ -75,8 +75,8 @@ void set_vieillissement();
 void unset_vieillissement();
 
 // Oscilliation
-#define MAX_STEP 200
-#define MAX_OSCILLIATION 200
+#define MAX_STEP 200 /**< \brief DELAI MAXIMUM*/
+#define MAX_OSCILLIATION 200 /**< \brief PERIODE MAXIMUM*/
 /**
  * \brief structure Oscille : période d'oscilliation, délai avant oscilliation
  */

@@ -189,7 +189,6 @@ int affiche_oscilliation(Oscille osc, Window win, Display* dpy, cairo_surface_t*
 
 
 /**
- * \fn void quitter(cairo_surface_t *surface, Display* dpy);
  * \param surface un pointeur vers une surface cairo
  * \param dpy Le X11 display
  * \brief Cette fonction quitte cairo et X11 proprement.

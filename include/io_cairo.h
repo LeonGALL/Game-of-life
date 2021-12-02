@@ -19,19 +19,29 @@
 #include "jeu.h"
 #include "io.h"
 
-#define SIZEY 500
-#define SIZEX 500
-#define FNAME_S 100
-#define MIN(X,Y) ((X<Y)?X:Y)
+#define SIZEY 500 /**< \brief TAILLE INITIALE EN Y*/
+#define SIZEX 500 /**< \brief TAILLE INITIALE EN X*/
+#define FNAME_S 100 /**< \brief TAILLE INITIALE EN Y*/
+#define MIN(X,Y) ((X<Y)?X:Y) /**< \brief MACRO QUI DONNE LE MINIMUM ENTRE DEUX NOMBRES*/
 
+/**
+ * \brief structure Size : taille en x et y.
+ */
 typedef struct {
-  int x;
-  int y;
+  int x; /**< \brief x, abscisses*/
+  int y; /**< \brief y, ordonnées*/
 } Size;
 
+// Affiche la grille
 void affiche_cairo(grille g, cairo_surface_t *surface, Size size, int temps);
+
+// Affiche une chaine de caractère
 void affiche_str_cairo(cairo_surface_t *surface, Size size, float pos_x, float pos_y, char str[], int mode);
+
+// Change une grille
 int change_grille_cairo(grille* g, grille* gc, Window win, Display* dpy, cairo_surface_t* surface, Size* size, Atom* wmDeleteWindow);
+
+// Quitte X11 et cairo
 void quitter(cairo_surface_t *surface, Display* dpy);
 
 #endif
